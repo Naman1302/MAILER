@@ -36,7 +36,11 @@ export function SignupForm() {
     axios.post("/register", formData).then(res=> {
       console.log(res);
       
-    
+    dispatch({
+      type: "REGISTER_SUCCESS",
+      payload: res.data,
+    });
+      
     toast.success("User Added", {
       position: "bottom-center",
       autoClose:2000,
@@ -50,6 +54,9 @@ export function SignupForm() {
 
     ). catch((err)=> {
       console.log(err);
+      dispatch({
+        type: "REGISTER_FAIL"
+      });
       
       toast.error("Register Failed", {
         position: "bottom-center",
